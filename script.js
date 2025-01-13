@@ -1,5 +1,5 @@
 const pagina = document.getElementById("pagina");
-let index = 6;
+let index = 0;
 
 const paginas = [
     '<h1>PARA MINHA ETERNA COMPANHEIRA<hr></h1><h2 id="inicio">MINHA FUTURA NAMORADA<br>MINHA FUTURA ESPOSA<br></h2><br><br> <h3>click para começar</h3>',
