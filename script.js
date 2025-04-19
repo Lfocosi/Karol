@@ -127,7 +127,7 @@ function montarJogo() {
 }
 
 function testarletra(elemento) {
-    const letra = elemento.value;
+    const letra = elemento.value[0].toLowerCase();
     let palavraDeChecagem = palavraEscolida.toLowerCase();
     palavraDeChecagem = palavraDeChecagem.replaceAll('ç', 'c');
     palavraDeChecagem = palavraDeChecagem.replaceAll('ã', 'a');
