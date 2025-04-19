@@ -14,7 +14,7 @@ input.maxLength = 1;
 input.addEventListener("change", (e) => {testarletra(e.target)});
 
 proximo.type = "Button";
-proximo.innerText = 'Proximo'
+proximo.value = 'Proximo'
 proximo.addEventListener("click", (e) => {montarJogo()});
 
 
