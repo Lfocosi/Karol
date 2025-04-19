@@ -1,53 +1,158 @@
 const pagina = document.getElementById("pagina");
-let index = 0;
+const dica = document.createElement("p");
+const palavra = document.createElement("p");
+const mostarUsadas = document.createElement("p");
+const input = document.createElement("input");
+const proximo = document.createElement("input");
 
-const paginas = [
-    '<h1>PARA MINHA ETERNA COMPANHEIRA<hr></h1><h2 id="inicio">MINHA FUTURA NAMORADA<br>MINHA FUTURA ESPOSA<br></h2><br><br> <h3>click para começar</h3>',
-    '<h1>Eu cheguei meio tarde para ser o seu primeiro amor<br>     mas estou preparado para ser o seu ultimo.</h1>',
-    '<h1>Você tem uma maneira unica de alegrar o meu corção</h1>',
-    '<h1>Eu gostaria de poder te dar a possibilidade de ver a si mesma, através dos meus olhos</h1>',
-    '<h1>Mas posso tentar atravez da camera.</h1>',
-    '<h1>4 de Setembro de 2024<br>Esse foi o dia que conversei com você a primeira vez,<br>O dia em que tudo mudou."</h1>',
-    '<img src="./img/20240904_183142.jpg">',
-    '<h1>"Holambra não é a cidade das flores sem você"</h1>',
-    '<img src="./img/20250113_151236.jpg">',
-    '<h1>"Sou seu paparazzi"</h1>',
-    '<img src="./img/20250113_151324.jpg">',
-    '<h1>"Seu adimirador"</h1>',
-    '<img src="./img/20250113_151523.jpg">',
-    '<h1>"Sua simplicidade encanta discretamente"</h1>',
-    '<img src="./img/20250113_151636.jpg">',
-    '<h1>"você torna o mundo mais colorido"</h1><br><br>',
-    '<img src="./img/20250113_151840.jpg">',
-    '<h1>"Amar você é a melhor parte da minha vida"</h1>',
-    '<img src="./img/20250113_152006.jpg">',
-    '<h1>"você é o presente que Deus me deu"</h1>',
-    '<img src="./img/IMG-20241209-WA0009.jpg">',
-    '<h1>Obrigado por todos esses momentos, e que muitos mais venham você é incrivel, você e perfeita para mim, podemos estar separados fisicamente, mas é temporario</h1>',
-    `<h1>${data()} dias te amando</h1> <div id="imagens"><img style="background-color:black;" src="./img/20250113_155739.gif"></div>`
-];
+const texto = document.createElement("input");
+texto.type = "number";
+texto.addEventListener("change", (e) => {codigo = e.target.value; criarPagina()});
 
-function data()
-{
-    const data1 = new Date();
-    const data2 = new Date("9/4/2024")
-    const divisor = 1000*60*60*24
-    return Math.ceil(Math.abs(data1-data2)/divisor)
-}
+input.type = "Text";
+input.maxLength = 1;
+input.addEventListener("change", (e) => {testarletra(e.target)});
 
-function montarPagina()
-{
-    if(index >= paginas.length)
-    {
-        index = 0;
-        
+proximo.type = "Button";
+proximo.innerText = 'Proximo'
+proximo.addEventListener("click", (e) => {montarJogo()});
+
+
+const palavras = {
+    level1: [
+        {dica: "Onde tudo começou entre nós.", palavra: "CEVISA"},
+        {dica: "Onde o mundo todo para de existir.", palavra: "Abraço"},
+        {dica: "É seu o lugar mais importante dentro do meu.", palavra: "Coração"},
+    ],
+    level2: [
+        {dica: "A parte de mim que reconhece você como lar.", palavra: "Alma"},
+        {dica: "O que eu mais amo ver no seu rosto.", palavra: "Sorriso"},
+        {dica: "O que me trouxe até você.", palavra: "Destino"},
+    ],
+    level3: [
+        {dica: "O que nunca falta quando estou com você.", palavra: "Carinho"},
+        {dica: "Estamos juntos pra tudo, lembra?", palavra: "Parceria"},
+        {dica: "O que eu sinto toda vez que você vai embora.", palavra: "Saudade"},
+    ],
+    level4: [
+        {dica: "O que cresce todos os dias entre a gente.", palavra: "Amor"},
+        {dica: "Cada momento com você vira uma dessa no meu coração.", palavra: "Lembrança"},
+        {dica: "Quando nossos olhos se encontram, o tempo para.", palavra: "Olhar"},
+    ],
+    level5: [
+        {dica: "Mesmo de longe, ouvir sua voz faz tudo melhorar.", palavra: "Chamada"},
+        {dica: "Aquela conexão única que só a gente entende.", palavra: "Complicidade"},
+        {dica: "Quando você menos espera… lá estou eu pensando em você.", palavra: "Surpresa"},
+    ],
+    level6:[
+        {dica: "Aquilo que faço com o coração, pensando no 'pra sempre' com você.", palavra: "Promessa"},
+        {dica: "Um jeitinho de dizer “estou com saudade” mesmo no meio do dia.", palavra: "Mensagem"},
+        {dica: "Eu só quero viver o meu ao seu lado.", palavra: "Futuro"}
+]};
+
+let codigo = 0;
+let level = 0;
+let acertosIndex = [];
+let letrasUsadas = [];
+let secreto = "";
+let palavraEscolida = "";
+let index;
+
+function criarPagina() {
+    pagina.innerHTML = "";
+    if (codigo == 0) {
+        pagina.appendChild(texto);
     }
-    pagina.innerHTML=paginas[index];
-    index++;
+    else if (codigo == 178245) {
+        level = 1;
+        montarJogo();
+    }
+    else if (codigo == 40924) {
+        level = 2;
+        montarJogo();
+    }
+    else if (codigo == 170801) {
+        level = 3;
+        montarJogo();
+    }
+    else if (codigo == 240598) {
+        level = 4;
+        montarJogo();
+    }
+    else if (codigo == 220924) {
+        level = 5;
+        montarJogo();
+    }
+    else if (codigo == 130125) {
+        level = 6;
+        montarJogo();
+    }
+    else {
+        codigo = 0;
+        criarPagina();
+    }
 }
 
-document.addEventListener("click", () => {
-    inicio=false
-    ;montarPagina()
-});
-montarPagina();
+function montarJogo() {
+    
+
+    pagina.innerHTML = "";
+
+    index = Math.floor(Math.random()*3);
+
+    while (acertosIndex.find((element) => element == index) != undefined) {
+        index = Math.floor(Math.random()*3);
+        if (acertosIndex.length >= 3) {
+            window.close();
+            break;
+        }
+    }
+
+    palavraEscolida = palavras[`level${level}`][index]['palavra'];
+    secreto = "";
+    letrasUsadas = [];
+
+    for (let index = 0; index < palavraEscolida.length; index++) {
+        secreto+='_';
+    }
+
+    dica.innerText = palavras[`level${level}`][index]['dica'];
+    palavra.innerText = secreto;
+    mostarUsadas.innerText = letrasUsadas;
+
+    pagina.appendChild(dica);
+    pagina.appendChild(palavra);
+    pagina.appendChild(input);
+    pagina.appendChild(mostarUsadas);
+}
+
+function testarletra(elemento) {
+    const letra = elemento.value;
+    let palavraDeChecagem = palavraEscolida.toLowerCase();
+    palavraDeChecagem = palavraDeChecagem.replaceAll('ç', 'c');
+    palavraDeChecagem = palavraDeChecagem.replaceAll('ã', 'a');
+
+    elemento.value = "";
+
+    if(letrasUsadas.find((element) => element == letra) == undefined) {
+        letrasUsadas.push(letra);
+        secreto = "";
+
+        for (let index = 0; index < palavraEscolida.length; index++) {
+            if (letrasUsadas.find((element) => element == palavraDeChecagem[index]) != undefined) {
+                secreto += palavraEscolida[index]
+            } else {
+                secreto += '_';
+            }
+        }
+        palavra.innerText = secreto;
+        mostarUsadas.innerText = letrasUsadas;
+    }
+
+    if (secreto.replace('_', "").length == palavraDeChecagem.length) {
+        acertosIndex.push(index);
+        pagina.appendChild(proximo);
+    }
+}
+
+criarPagina();
