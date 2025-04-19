@@ -113,7 +113,7 @@ function montarJogo() {
     letrasUsadas = [];
 
     for (let index = 0; index < palavraEscolida.length; index++) {
-        secreto+='_';
+        secreto+='_ ';
     }
 
     dica.innerText = palavras[`level${level}`][index]['dica'];
@@ -142,14 +142,14 @@ function testarletra(elemento) {
             if (letrasUsadas.find((element) => element == palavraDeChecagem[index]) != undefined) {
                 secreto += palavraEscolida[index]
             } else {
-                secreto += '_';
+                secreto += '_ ';
             }
         }
         palavra.innerText = secreto;
         mostarUsadas.innerText = letrasUsadas;
     }
 
-    if (secreto.replace('_', "").length == palavraDeChecagem.length) {
+    if (secreto.replace('_ ', "").length == palavraDeChecagem.length) {
         acertosIndex.push(index);
         pagina.appendChild(proximo);
     }
