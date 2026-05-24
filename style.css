@@ -1,0 +1,154 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#111;
+    overflow:hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+header{
+    z-index: 1;
+    color: rgb(212, 212, 212);
+    background-color: #00000090;
+}
+
+h1{
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    user-select: none; 
+}
+
+h4{
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    user-select: none; 
+}
+
+.chuteCorreto{
+    color: greenyellow;
+}
+
+.chuteErrado{
+    color: orangered;
+}
+
+.imgDespedida{
+    width: 100%;
+    user-select: none; 
+}
+
+.centro{
+    width: 100%;
+    height: 100%;
+    color: rgb(212, 212, 212);
+    text-align: center;
+    align-content: center;
+}
+
+.texto{
+    font-size: 2em;
+    text-align: center;
+    align-content: center;
+    background-color: #00000050;
+}
+
+.slider{
+    z-index: -1;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    background:#000;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.slide-track{
+    display:flex;
+    width:max-content;
+    animation: scroll 60s linear infinite;
+}
+
+.slide{
+    flex-shrink:0;
+    margin-right:10px;
+}
+
+.slide img{
+    height:100vh;
+    object-fit:cover;
+    display:block;
+    border-radius: 10px;
+}
+
+.btn{
+    user-select: none;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+#palavra{
+    font-size: 2em;
+}
+
+#dica
+{
+    font-size: 1.5em;
+}
+
+#Chutes{
+    margin-right: 25%;
+    margin-left: 25%;
+    font-size: 1.5em;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#botoes{
+    height: 100%;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#pagina, #pagina2{
+    height: 100%;
+    width: 100%;
+}
+
+
+@keyframes scroll {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-50%);
+    }
+}
+
+@media (min-width: 768px) {
+    .imgDespedida{
+        width: auto;
+        height: 100%;
+    }
+}
